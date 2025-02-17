@@ -15,8 +15,13 @@
                 <a href="{{route("students.index")}}" class="submenu-link">كل الطلاب    </a>
                 
             </li>
+            <li class="submenu-item  ">
+                <a href="{{route("students.request")}}" class="submenu-link">طلبات الحصول علي المادة    </a>
+                
+            </li>
                      
         </ul>
+     
             
             
     </li>
@@ -31,14 +36,14 @@
             <ul class="submenu ">
                 
                 <li class="submenu-item  ">
-                    <a href="{{route("subjects.index")}}" class="submenu-link">كل المواد</a>
+                    <a href="{{route("subjects.index")}}" class="submenu-link"> المادة</a>
                     
                 </li>
                 
-                <li class="submenu-item  ">
+                {{-- <li class="submenu-item  ">
                     <a href="{{route("subjects.create")}}" class="submenu-link">إضافة مادة</a>
                     
-                </li>
+                </li> --}}
                 
             </ul>
             

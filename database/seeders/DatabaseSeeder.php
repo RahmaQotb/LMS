@@ -15,6 +15,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             SubjectSeeder::class,
         ]);
+        $this->call([
+            StudentSeeder::class,
+            // يمكنك إضافة Seeders أخرى هنا
+        ]);
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([

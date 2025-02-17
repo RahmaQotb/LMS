@@ -14,9 +14,7 @@ class SubjectSeeder extends Seeder
     public function run(): void
     {
         DB::table('subjects')->insert([
-            'name' => 'Arabic',
-            'created_at' => now(),
-            'updated_at' => now(),
+            'name' => 'لغه عربيه لفظي',
         ]);
     }
 }

@@ -13,7 +13,8 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        //
+        $subject = Subject::findOrFail(1);
+        return view('Dashboard.subject.index' , compact('subject'));
     }
 
     /**
@@ -37,7 +38,6 @@ class SubjectController extends Controller
      */
     public function show(string $id)
     {
-        //
     }
 
     /**
@@ -45,7 +45,8 @@ class SubjectController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $subject = Subject::findOrFail(1); 
+        return view('Dashboard.subject.edit', compact('subject'));    
     }
 
     /**
@@ -53,8 +54,16 @@ class SubjectController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
-    }
+        $subject = Subject::findOrFail(1);
+        $validated=$request->validate([
+            'drive_url' => 'required',
+            'google_form_url' => 'required',
+            'youtube_url' => 'required'
+        ]);
+        if($validated) {
+        $subject->update($validated);
+        }
+        return redirect()->back()->with('success', 'تم تحديث الروابط بنجاح');    }
 
     /**
      * Remove the specified resource from storage.

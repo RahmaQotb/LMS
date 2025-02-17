@@ -1,84 +1,68 @@
 @extends('Dashboard.layouts.layouts')
 
-@section('title')
-المواد
-@endsection
+@section('title', 'تفاصيل المادة')
 
 @section('content')
-@section('css')
-    {{-- <link rel="stylesheet" href="{{asset('Dashboard/assets/extensions/simple-datatables/style.css')}}"> --}}
-    <link rel="stylesheet" href="{{asset('Dashboard/assets/compiled/css/table-datatable.css')}}">
-@endsection
-@section('scripts')
-    <script src="{{asset('Dashboard/assets/extensions/simple-datatables/umd/simple-datatables.js')}}"></script>
-    <script src="{{asset('Dashboard/assets/static/js/pages/simple-datatables.js')}}"></script>
-@endsection
+    <div class="page-heading">
+        <h3>تفاصيل المادة</h3>
+    </div>
 
+    @include('messages.errors')
+    @include('messages.success')
 
-<div class="page-heading">
-    <h3>المواد</h3>
-</div> 
-@include('messages.errors')
-@include('messages.success')
-
-<section class="section">
-    <div class="card">
-        <div class="card-header">
-            <h5 class="card-title">
-                كل المواد
-            </h5>
+    <section class="section">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">{{ $subject->name }}</h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-4">
+                    <h6>روابط المادة:</h6>
+                    <table class="table table-bordered">
+                        <thead class="bg-primary text-white">
+                            <tr>
+                                <th>نوع الرابط</th>
+                                <th>الرابط</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Google Drive</strong></td>
+                                <td>
+                                    @if($subject->drive_url)
+                                        <a href="{{ $subject->drive_url }}" target="_blank">{{ $subject->drive_url }}</a>
+                                    @else
+                                        <span class="text-muted">لم يتم إضافة رابط</span>
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Google Form</strong></td>
+                                <td>
+                                    @if($subject->google_form_url)
+                                        <a href="{{ $subject->google_form_url }}" target="_blank">{{ $subject->google_form_url }}</a>
+                                    @else
+                                        <span class="text-muted">لم يتم إضافة رابط</span>
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>YouTube</strong></td>
+                                <td>
+                                    @if($subject->youtube_url)
+                                        <a href="{{ $subject->youtube_url }}" target="_blank">{{ $subject->youtube_url }}</a>
+                                    @else
+                                        <span class="text-muted">لم يتم إضافة رابط</span>
+                                    @endif
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="d-flex gap-2">
+                    <a href="{{ route('subjects.edit', 1) }}" class="btn btn-primary">تعديل الروابط</a>
+                </div>
+            </div>
         </div>
-        <div style="display: flex; gap: 10px; margin-top: 5px; margin-left: 50px;  justify-content: flex-end">
-            <a href="{{route('subjects.create')}}" class="btn  btn-success" rel="noopener noreferrer">
-                إضافة مادة
-            </a>
-        </div>
-        <div class="card-body">
-<table class="table table-striped" id="table1">
-    <thead>
-        <tr>
-            <th>رقم المادة</th>
-            <th>الإسم</th>
-            <th>الوصف</th>
-            <th>تم الاضافة في</th>
-            <th colspan="2"></th>
-
-        </tr>
-    </thead>
-    <tbody>
-        @forelse ($subjects as $subject)
-        <tr>
-            <td>{{$subject->id}}</td>
-            <td>{{$subject->name}}</td>
-            <td>
-                {{$subject->desc ?? '-' }}
-            </td>
-            <td>
-                {{$subject->created_at}}
-            </td>
-          
-            <td>
-                <a href="{{route('subjects.edit',$subject->id)}}" class="btn btn-sm btn-outline-primary" rel="noopener noreferrer">
-                    التعديل
-                </a>
-            </td>
-            <td>
-                <form action="{{route('subjects.destroy',$subject->id)}}" method="post">
-                    @csrf
-                    @method('delete')
-                    <button type="submit" class="btn btn-sm btn-outline-danger">حذف</button>
-                </form>
-            </td>
-        </tr>
-        @empty
-        <tr>
-            <td colspan="6">لا يوجد مواد</td>
-        </tr>
-        @endforelse
-    </tbody>
-</table>
-</div>
-</div>
-
-</section>
+    </section>
 @endsection

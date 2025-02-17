@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('drive_url')->nullable();
             $table->string('google_form_url')->nullable();
             $table->string('youtube_url')->nullable();
-            // $table->enum('status', ['قيد المعالجة', 'مقبول', 'مرفوض'])->default('قيد المعالجة');        
             $table->timestamps();
         });
     }
