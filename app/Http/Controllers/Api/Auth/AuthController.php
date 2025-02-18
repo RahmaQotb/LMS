@@ -66,16 +66,17 @@ class AuthController extends Controller
             ], 403);
         }
     
-        if ($user->tokens()->count() > 0) {
-            return response()->json(["message" => "Already logged in."], 409);
-        }
+        // if ($user->tokens()->count() > 0) {
+        //     return response()->json(["message" => "Already logged in."], 409);
+        // }
     
         $token = $user->createToken("API TOKEN OF " . $user->name)->plainTextToken;
     
         return response()->json([
-            "message" => "Login Done Successfully. Your token: " . $token,
+            "message" => "Login Done Successfully." ,
             "status" => 200,
-            "data" => $user
+            "data" => $user,
+            "token" =>$token
         ], 200);
     }
     
