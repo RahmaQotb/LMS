@@ -43,19 +43,17 @@ class StudentController extends Controller
                     ], 200);
     
                 case 'قيد المعالجة':
-                    // التحديث باستخدام Query Builder (مع الأقواس)
                     $user->subjects()->updateExistingPivot($subject->id, [
                         'status' => 'قيد المعالجة',
                         'updated_at' => now()
                     ]);
-    
+
                     return response()->json([
-                        'message' => 'تم تحديث طلبك السابق'
+                        'message' => 'طلبك قيد المعالجة'
                     ], 200);
             }
         }
     
-        // الإنشاء باستخدام Query Builder (مع الأقواس)
         $user->subjects()->attach($subject->id, [
             'status' => 'قيد المعالجة',
             'created_at' => now(),
