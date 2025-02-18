@@ -66,12 +66,5 @@ class StudentController extends Controller
             'message' => 'تم تقديم طلبك بنجاح'
         ], 201);
     }
-
-
-
-
-
-
-
   
 }

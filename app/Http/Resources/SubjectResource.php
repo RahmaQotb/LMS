@@ -20,8 +20,8 @@ class SubjectResource extends JsonResource
             'drive_url' => $this->drive_url,
             'google_form_url' => $this->google_form_url,
             'youtube_url' => $this->youtube_url,
-            'created_at' => $this->created_at->format('Y-m-d'),
-            'updated_at' => $this->updated_at->format('Y-m-d'),
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 }
