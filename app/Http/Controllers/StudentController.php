@@ -91,6 +91,6 @@ class StudentController extends Controller
     {
         $student = User::findOrFail($id);
         $student->delete();
-        return view('Dashboard.student.index')->with('success', 'تم حذف الطالب بنجاح');
+        return redirect()->route('students.index')->with('success', 'تم حذف الطالب بنجاح');
     }
 }
