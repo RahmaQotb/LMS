@@ -23,11 +23,11 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-/**
- * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
- */
-public function subjects()
-{
-    return $this->belongsToMany(Subject::class)->withPivot('status');
-}
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function subjects()
+    {
+        return $this->belongsToMany(Subject::class)->withPivot('status');
+    }
 }

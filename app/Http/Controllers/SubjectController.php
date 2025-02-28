@@ -11,10 +11,10 @@ class SubjectController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Subject $subject)
     {
-        $subject = Subject::findOrFail(1);
-        return view('Dashboard.subject.index' , compact('subject'));
+        $subject = $this->getSubject($subject);
+        return view('Dashboard.subject.index', compact('subject'));
     }
 
     /**
@@ -36,34 +36,33 @@ class SubjectController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-    }
+    public function show(string $id) {}
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Subject $subject)
     {
-        $subject = Subject::findOrFail(1); 
-        return view('Dashboard.subject.edit', compact('subject'));    
+        $subject = $this->getSubject($subject);
+        return view('Dashboard.subject.edit', compact('subject'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Subject $subject)
     {
-        $subject = Subject::findOrFail(1);
-        $validated=$request->validate([
-            'drive_url' => 'required',
+        $subject = $this->getSubject($subject);
+        $validated = $request->validate([
+            'drive_url' => 'required|string',
             'google_form_url' => 'required',
             'youtube_url' => 'required'
         ]);
-        if($validated) {
-        $subject->update($validated);
+        if ($validated) {
+            $subject->update($validated);
         }
-        return redirect()->back()->with('success', 'تم تحديث الروابط بنجاح');    }
+        return redirect()->back()->with('success', 'تم تحديث الروابط بنجاح');
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -72,5 +71,8 @@ class SubjectController extends Controller
     {
         //
     }
-
+    public function getSubject(Subject $subject)
+    {
+        return $subject::findOrFail(1)->with("files", "lecures", "exams");
+    }
 }

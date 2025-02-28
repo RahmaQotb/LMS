@@ -11,10 +11,22 @@ class Subject extends Model
 
     protected $guarded = [];
 
-   
+
 
     public function users()
     {
         return $this->belongsToMany(User::class)->withPivot('status');
+    }
+    public function lectures()
+    {
+        return $this->hasMany(Lecture::class);
+    }
+    public function exams()
+    {
+        return $this->hasMany(Exam::class);
+    }
+    public function files()
+    {
+        return $this->hasMany(File::class);
     }
 }

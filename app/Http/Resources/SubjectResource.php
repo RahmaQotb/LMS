@@ -17,9 +17,9 @@ class SubjectResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'drive_url' => $this->drive_url,
-            'google_form_url' => $this->google_form_url,
-            'youtube_url' => $this->youtube_url,
+            'drive_url' => $this->files->drive_url,
+            'google_form_url' => $this->exams->google_form_url,
+            'youtube_url' => $this->lectures->youtube_url,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
